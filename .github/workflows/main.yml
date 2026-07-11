@@ -15,7 +15,10 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      - run: npm cache clean --force
-      - run: npm ci
+      - name: Clean npm cache
+        run: npm cache clean --force
+      - name: Install dependencies with retry
+        run: |
+          npm ci || npm ci
       - run: npm run lint
       - run: npm run build
