@@ -18,6 +18,6 @@ jobs:
       - name: Clear npm cache and install dependencies
         run: |
           npm cache clean --force
-          npm ci --no-audit
+          npm ci --no-audit --prefer-offline --no-progress
       - run: npm run lint
       - run: npm run build
