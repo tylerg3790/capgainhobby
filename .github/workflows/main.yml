@@ -11,14 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Clean npm cache
-        run: npm cache clean --force
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-      - name: Install dependencies with retry
+      - name: Clear npm cache and install dependencies
         run: |
-          npm ci || npm ci
+          npm cache clean --force
+          npm ci --no-audit
       - run: npm run lint
       - run: npm run build
